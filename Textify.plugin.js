@@ -6,23 +6,23 @@
  */
 module.exports = (() => {
     const config = {
-        info: {
-            name: "Textify",
-            authors: [{
-                name: "PrinceBunBun981",
-                discord_id: "264163473179672576",
-                github_username: "PrinceBunBun981",
-                twitter_username: "PrinceBunBun981"
+        "info": {
+            "name": "Textify",
+            "authors": [{
+                "name": "PrinceBunBun981",
+                "discord_id": "264163473179672576",
+                "github_username": "PrinceBunBun981",
+                "twitter_username": "PrinceBunBun981"
             }],
-            version: "1.2.0",
-            description: "Textify",
-            github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
-            github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
+            "version": "1.2.0",
+            "description": "Textify",
+            "github": "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
+            "github_raw": "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
         },
-        changelog: [{
-            title: "Textify 1.2.0 Update",
-            "added" {
-                "Command Options": {
+        "changelog": [{
+            "title": "Textify 1.2.0 Update",
+            "added": {
+                "Command Options": [
                     "Added ri! command.",
                     "Added reverse! command.",
                     "Added owo! command.",
@@ -30,12 +30,12 @@ module.exports = (() => {
                     "Added ab! command.",
                     "Added num! command.",
                     "Added woke! command.",
-                }
+                ]
             },
             "fixed": {
-                "OwOify": {
+                "OwOify": [
                     "Fixed OwOify command."
-                }
+                ]
             }
         }]
     };
