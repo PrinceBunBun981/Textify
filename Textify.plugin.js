@@ -1,5 +1,6 @@
 /**
  * @name Textify
+ * @authorId 264163473179672576
  * @authorLink https://github.com/PrinceBunBun981
  * @source https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js
  */
@@ -13,17 +14,29 @@ module.exports = (() => {
                 github_username: "PrinceBunBun981",
                 twitter_username: "PrinceBunBun981"
             }],
-            version: "1.0",
+            version: "1.2.0",
             description: "Textify",
             github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
             github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
         },
         changelog: [{
-            title: "1.0",
-            type: "added",
-            items: [
-                "Added OwOify option."
-            ]
+            title: "Textify 1.2.0 Update",
+            "added" {
+                "Command Options": {
+                    "Added ri! command.",
+                    "Added reverse! command.",
+                    "Added owo! command.",
+                    "Added owosong! command.",
+                    "Added ab! command.",
+                    "Added num! command.",
+                    "Added woke! command.",
+                }
+            },
+            "fixed": {
+                "OwOify": {
+                    "Fixed OwOify command."
+                }
+            }
         }]
     };
 
@@ -110,6 +123,7 @@ module.exports = (() => {
 
                                 message.content = message.content
                                     .replace(owosong, owolyrics.replace(/^ +/gm, ''))
+                                    
                                 break;
 
                             case "ab":
