@@ -6,39 +6,49 @@
  */
 module.exports = (() => {
     const config = {
-        "info": {
-            "name": "Textify",
-            "authors": [{
-                "name": "PrinceBunBun981",
-                "discord_id": "264163473179672576",
-                "github_username": "PrinceBunBun981",
-                "twitter_username": "PrinceBunBun981"
-            }],
-            "version": "1.2.0",
-            "description": "Textify",
-            "github": "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
-            "github_raw": "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
-        },
-        "changelog": [{
-            "title": "Textify 1.2.0 Update",
-            "added": {
-                "Command Options": [
-                    "Added ri! command.",
-                    "Added reverse! command.",
-                    "Added owo! command.",
-                    "Added owosong! command.",
-                    "Added ab! command.",
-                    "Added num! command.",
-                    "Added woke! command.",
-                ]
+        info:
+            {
+                name: "Textify",
+                authors:
+                [
+                    {
+                        name: "PrinceBunbun981",
+                        discord_id: "644298972420374528",
+                        github_username: "PrinceBunBun981",
+                        twitter_username: "PrinceBunBun981"
+                    }
+                ],
+                version: "1.2",
+                description: "Use various commands to edit the text you send.",
+                github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
+                github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
             },
-            "fixed": {
-                "OwOify": [
-                    "Fixed OwOify command."
-                ]
-            }
-        }]
-    };
+            changelog:
+            [
+                {
+                    title: "1.2 Update",
+                    type: "added",
+                    items:
+                    [
+                        "Added ri! command.",
+                        "Added reverse! command.",
+                        "Added owo! command.",
+                        "Added owosong! command.",
+                        "Added ab! command.",
+                        "Added num! command.",
+                        "Added woke! command."
+                    ]
+                },
+                {
+                    title: "Bug Fixes",
+                    type: "fixed",
+                    items:
+                    [
+                        "Fixed OwOify command."
+                    ]
+                }
+            ]
+        };
 
     return (([Plugin, Api]) => {
 
