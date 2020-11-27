@@ -1,4 +1,4 @@
-//META{"name":"OwOify"}*//
+//META{"name":"OwOify","source":"https://github.com/PrinceBunBun981/OwOify/blob/main/OwOify.plugin.js"}*//
 var OwOify = (() => {
     var PluginUpdater, WebpackModules, Tooltip, Modals, ReactTools, ContextMenu, Patcher, Settings, PluginUtilities, DiscordAPI;
     return class OwOify {
