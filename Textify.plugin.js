@@ -18,7 +18,7 @@ module.exports = (() => {
                         twitter_username: "PrinceBunBun981"
                     }
                 ],
-                version: "1.2",
+                version: "1.2.1",
                 description: "Use various commands to edit the text you send.",
                 github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
                 github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
@@ -26,7 +26,7 @@ module.exports = (() => {
             changelog:
             [
                 {
-                    title: "1.2 Update",
+                    title: "1.2.1 Update",
                     type: "added",
                     items:
                     [
@@ -44,7 +44,8 @@ module.exports = (() => {
                     type: "fixed",
                     items:
                     [
-                        "Fixed OwOify command."
+                        "Fixed owo! command.",
+                        "Fixed ra! command."
                     ]
                 }
             ]
@@ -68,7 +69,7 @@ module.exports = (() => {
                         const content = message.content.toLowerCase();
 
                         switch (content.split("!")[0]) {
-                            case "ri":
+                            case "ra":
                                 const ra = (/^ra\! /g).exec(content);
 
                                 message.content = message.content.substr(ra[0].length, message.content.length)
