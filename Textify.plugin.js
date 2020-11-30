@@ -30,7 +30,7 @@ module.exports = (() => {
                     type: "added",
                     items:
                     [
-                        "Added ri! command.",
+                        "Added ra! command.",
                         "Added reverse! command.",
                         "Added owo! command.",
                         "Added owosong! command.",
