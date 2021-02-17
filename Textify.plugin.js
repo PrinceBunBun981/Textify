@@ -18,7 +18,7 @@ module.exports = (() => {
                         twitter_username: "PrinceBunBun981"
                     }
                 ],
-                version: "1.2.1",
+                version: "1.2.2",
                 description: "Use various commands to edit the text you send.",
                 github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
                 github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
@@ -26,28 +26,13 @@ module.exports = (() => {
             changelog:
             [
                 {
-                    title: "1.2.1 Update",
+                    title: "1.2.2 Update",
                     type: "added",
                     items:
                     [
-                        "Added ra! command.",
-                        "Added reverse! command.",
-                        "Added owo! command.",
-                        "Added owosong! command.",
-                        "Added ab! command.",
-                        "Added num! command.",
-                        "Added woke! command."
+                        "Added curse! command.",
                     ]
                 },
-                {
-                    title: "Bug Fixes",
-                    type: "fixed",
-                    items:
-                    [
-                        "Fixed owo! command.",
-                        "Fixed ra! command."
-                    ]
-                }
             ]
         };
 
@@ -67,8 +52,70 @@ module.exports = (() => {
                 onStart() {
                     Patcher.after(DiscordModules.MessageActions, "sendMessage", (_, [, message]) => {
                         const content = message.content.toLowerCase();
+						
+						function getRandomItem(items) {
+							return items[Math.floor(Math.random()*items.length)];
+						}
 
                         switch (content.split("!")[0]) {
+							case "cursed":
+                                const cursed = (/^cursed\! /g).exec(content);
+
+								const a = ["a","ä","á","à","â","ã","å","ą"]
+								const b = ["b"]
+								const c = ["c","ç","ć","č"]
+								const d = ["d"]
+								const e = ["e","è","é","ê","ë","ē","ė","ę"]
+								const f = ["f"]
+								const h = ["h"]
+								const i = ["i","î","î","ï","í","ī","į","ì"]
+								const j = ["j"]
+								const k = ["k"]
+								const l = ["l","ł"]
+								const m = ["m"]
+								const n = ["n","ñ","ń"]
+								const o = ["o"]
+								const p = ["p"]
+								const q = ["q"]
+								const r = ["r"]
+								const s = ["s","ś","š"]
+								const t = ["t"]
+								const u = ["u","û","ü","ù","ú","ū"]
+								const v = ["v"]
+								const w = ["w"]
+								const x = ["x"]
+								const y = ["y","ÿ"]
+								const z = ["z","ž","ź","ż"]
+
+                                message.content = message.content.substr(cancer[0].length, message.content.length)
+                                    .replace(/[a]/g, getRandomItem(a))
+									.replace(/[b]/g, getRandomItem(b))
+									.replace(/[c]/g, getRandomItem(c))
+									.replace(/[d]/g, getRandomItem(d))
+									.replace(/[e]/g, getRandomItem(e))
+									.replace(/[f]/g, getRandomItem(f))
+									.replace(/[h]/g, getRandomItem(h))
+									.replace(/[i]/g, getRandomItem(i))
+									.replace(/[j]/g, getRandomItem(j))
+									.replace(/[k]/g, getRandomItem(k))
+									.replace(/[l]/g, getRandomItem(l))
+									.replace(/[m]/g, getRandomItem(m))
+									.replace(/[n]/g, getRandomItem(n))
+									.replace(/[o]/g, getRandomItem(o))
+									.replace(/[p]/g, getRandomItem(p))
+									.replace(/[q]/g, getRandomItem(q))
+									.replace(/[r]/g, getRandomItem(r))
+									.replace(/[s]/g, getRandomItem(s))
+									.replace(/[t]/g, getRandomItem(t))
+									.replace(/[u]/g, getRandomItem(u))
+									.replace(/[v]/g, getRandomItem(v))
+									.replace(/[w]/g, getRandomItem(w))
+									.replace(/[x]/g, getRandomItem(x))
+									.replace(/[y]/g, getRandomItem(y))
+									.replace(/[z]/g, getRandomItem(z))
+
+                                break;
+								
                             case "ra":
                                 const ra = (/^ra\! /g).exec(content);
 
