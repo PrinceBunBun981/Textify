@@ -18,7 +18,7 @@ module.exports = (() => {
                         twitter_username: "PrinceBunBun981"
                     }
                 ],
-                version: "1.2.2",
+                version: "1.2.5",
                 description: "Use various commands to edit the text you send.",
                 github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
                 github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
@@ -26,11 +26,19 @@ module.exports = (() => {
             changelog:
             [
                 {
-                    title: "1.2.2 Update",
+                    title: "1.2.5 Update",
                     type: "added",
                     items:
                     [
                         "Added curse! command.",
+                    ]
+                },
+				{
+                    title: "Bug Fixes",
+                    type: "fixed",
+                    items:
+                    [
+                        "Fixed curse command not doing what it was told.",
                     ]
                 },
             ]
@@ -58,8 +66,8 @@ module.exports = (() => {
 						}
 
                         switch (content.split("!")[0]) {
-							case "cursed":
-                                const cursed = (/^cursed\! /g).exec(content);
+							case "curse":
+                                const cursed = (/^curse\! /g).exec(content);
 
 								const a = ["a","ä","á","à","â","ã","å","ą"]
 								const b = ["b"]
