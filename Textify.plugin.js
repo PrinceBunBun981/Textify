@@ -67,7 +67,7 @@ module.exports = (() => {
 
                         switch (content.split("!")[0]) {
 							case "curse":
-                                const cursed = (/^curse\! /g).exec(content);
+                                const curse = (/^curse\! /g).exec(content);
 
 								const a = ["a","ä","á","à","â","ã","å","ą"]
 								const b = ["b"]
@@ -95,7 +95,7 @@ module.exports = (() => {
 								const y = ["y","ÿ"]
 								const z = ["z","ž","ź","ż"]
 
-                                message.content = message.content.substr(cancer[0].length, message.content.length)
+                                message.content = message.content.substr(curse[0].length, message.content.length)
                                     .replace(/[a]/g, getRandomItem(a))
 									.replace(/[b]/g, getRandomItem(b))
 									.replace(/[c]/g, getRandomItem(c))
