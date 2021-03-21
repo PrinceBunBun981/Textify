@@ -4,7 +4,7 @@
  * @authorLink https://github.com/PrinceBunBun981
  * @source https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js
  */
-module.exports = (() => {
+ module.exports = (() => {
     const config = {
         info:
             {
@@ -12,25 +12,25 @@ module.exports = (() => {
                 authors:
                 [
                     {
-                        name: "PrinceBunbun981",
+                        name: "PrinceBunBun981",
                         discord_id: "644298972420374528",
                         github_username: "PrinceBunBun981",
                         twitter_username: "PrinceBunBun981"
                     }
                 ],
-                version: "1.2.5",
+                version: "1.2.7",
                 description: "Use various commands to edit the text you send.",
-                github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js",
+                github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textifyplugin.js",
                 github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
             },
             changelog:
             [
                 {
-                    title: "1.2.5 Update",
+                    title: "1.2.7 Update",
                     type: "added",
                     items:
                     [
-                        "Added curse! command.",
+                        "Added %owosong% replacement variable.",
                     ]
                 },
 				{
@@ -38,7 +38,7 @@ module.exports = (() => {
                     type: "fixed",
                     items:
                     [
-                        "Fixed curse command not doing what it was told.",
+                        "Fixed owo! command, can now use replacement variables.",
                     ]
                 },
             ]
@@ -65,6 +65,36 @@ module.exports = (() => {
 							return items[Math.floor(Math.random()*items.length)];
 						}
 
+                        // Replace random text components
+                        switch (true) {
+                            case content.includes("%owosong%"):
+                                const owolyrics = `
+                                Okay, I know this is a really bad idea but
+                                I'm already here so
+                                Here we fuckin’ go
+                                Rawr
+
+                                ​x3 nuzzles, pounces on you, uwu you so warm (Ooh)
+                                Couldn't help but notice your bulge from across the floor
+                                Nuzzles your necky wecky-tilde murr-tilde, hehe
+                                Unzips your baggy ass pants, oof baby you so musky
+                                Take me home, pet me, and make me yours and don't forget to stuff me
+                                See me wag my widdle baby tail all for your bulgy-wulgy
+                                Kissies and lickies your neck (Mmh)
+                                I hope daddy likies
+                                Nuzzles and wuzzles your chest (Yuh)
+                                I be (Yeah) gettin’ thirsty
+
+                                Hey, I got a little itch, you think you can help me?
+                                Only seven inches long, uwu, please adopt me
+                                Paws on your bulge as I lick my lips (UwU, punish me please)
+                                'Bout to hit 'em with this furry shit (He don't see it comin')
+                                `
+                                message.content = message.content.replace("%owosong%", owolyrics.replace(/^ +/gm, ''));
+                                break;
+                        }
+
+                        // Commands
                         switch (content.split("!")[0]) {
 							case "curse":
                                 const curse = (/^curse\! /g).exec(content);
@@ -162,7 +192,6 @@ module.exports = (() => {
                                 break;
 
                             case "owosong":
-                                console.log(`owosong`)
                                 const owosong = (/^owosong\!/g).exec(content);
                                 const owolyrics = `
                                 Okay, I know this is a really bad idea but
