@@ -18,7 +18,7 @@
                         twitter_username: "PrinceBunBun981"
                     }
                 ],
-                version: "1.2.7",
+                version: "1.2.8",
                 description: "Use various commands to edit the text you send.",
                 github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textifyplugin.js",
                 github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
@@ -26,19 +26,19 @@
             changelog:
             [
                 {
-                    title: "1.2.7 Update",
+                    title: "1.2.8 Update",
                     type: "added",
                     items:
                     [
-                        "Added %owosong% replacement variable.",
+                        "Added %animethighs% replacement variable.",
                     ]
                 },
 				{
-                    title: "Bug Fixes",
+                    title: "Removed",
                     type: "fixed",
                     items:
                     [
-                        "Fixed owo! command, can now use replacement variables.",
+                        "Removed owosong! as there is a replacement variable.",
                     ]
                 },
             ]
@@ -64,17 +64,16 @@
 						function getRandomItem(items) {
 							return items[Math.floor(Math.random()*items.length)];
 						}
-
                         // Replace random text components
                         switch (true) {
                             case content.includes("%owosong%"):
-                                const owolyrics = `
+                                const owosong = `
                                 Okay, I know this is a really bad idea but
                                 I'm already here so
                                 Here we fuckin’ go
                                 Rawr
 
-                                ​x3 nuzzles, pounces on you, uwu you so warm (Ooh)
+                                x3 nuzzles, pounces on you, uwu you so warm (Ooh)
                                 Couldn't help but notice your bulge from across the floor
                                 Nuzzles your necky wecky-tilde murr-tilde, hehe
                                 Unzips your baggy ass pants, oof baby you so musky
@@ -90,7 +89,18 @@
                                 Paws on your bulge as I lick my lips (UwU, punish me please)
                                 'Bout to hit 'em with this furry shit (He don't see it comin')
                                 `
-                                message.content = message.content.replace("%owosong%", owolyrics.replace(/^ +/gm, ''));
+                                message.content = message.content.replace("%owosong%", owosong.replace(/^ +/gm, ''));
+                                break;
+                            case content.includes("%animethighs%"):
+                                const animethighs = `
+                                Anime thighs when she open up so wide, I got a twinkle in my eye
+                                (Huh?) pussy is so tight, I just really wanna pipe
+                                Oh my God, she got them big ass titties, she’s only “Wow” (Ayy, ayy)
+                                Anime thighs when she open up so wide, I got a twinkle in my eye
+                                (Huh?) pussy is so tight, I just really wanna pipe
+                                Oh my God, she got them big ass titties, she’s only “Wow” (Ayy, ayy)
+                                `
+                                message.content = message.content.replace("%animethighs%", animethighs.replace(/^ +/gm, ''));
                                 break;
                         }
 
@@ -189,36 +199,6 @@
                                     .replace(/OVE/g, "UV")
                                     .replace(/\!+/g, `! ${faces[Math.floor(Math.random() * faces.length)]} `)
 
-                                break;
-
-                            case "owosong":
-                                const owosong = (/^owosong\!/g).exec(content);
-                                const owolyrics = `
-                                Okay, I know this is a really bad idea but
-                                I'm already here so
-                                Here we fuckin’ go
-                                Rawr
-
-                                ​x3 nuzzles, pounces on you, uwu you so warm (Ooh)
-                                Couldn't help but notice your bulge from across the floor
-                                Nuzzles your necky wecky-tilde murr-tilde, hehe
-                                Unzips your baggy ass pants, oof baby you so musky
-                                Take me home, pet me, and make me yours and don't forget to stuff me
-                                See me wag my widdle baby tail all for your bulgy-wulgy
-                                Kissies and lickies your neck (Mmh)
-                                I hope daddy likies
-                                Nuzzles and wuzzles your chest (Yuh)
-                                I be (Yeah) gettin’ thirsty
-
-                                Hey, I got a little itch, you think you can help me?
-                                Only seven inches long, uwu, please adopt me
-                                Paws on your bulge as I lick my lips (UwU, punish me please)
-                                'Bout to hit 'em with this furry shit (He don't see it comin')
-                                `
-
-                                message.content = message.content
-                                    .replace(owosong, owolyrics.replace(/^ +/gm, ''))
-                                    
                                 break;
 
                             case "ab":
