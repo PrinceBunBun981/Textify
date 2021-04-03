@@ -18,28 +18,30 @@
                         twitter_username: "PrinceBunBun981"
                     }
                 ],
-                version: "1.2.8",
+                version: "1.3.0",
                 description: "Use various commands to edit the text you send.",
                 github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textifyplugin.js",
                 github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
             },
-            changelog:
+        changelog:
             [
                 {
-                    title: "1.2.8 Update",
+                    title: "1.3.0 Update",
                     type: "added",
                     items:
                     [
-                        "Added %animethighs% replacement variable.",
+                        "Added option to Enable Discord Developer Experiments in Textify's Settings",
                     ]
                 },
-				{
-                    title: "Removed",
-                    type: "fixed",
-                    items:
-                    [
-                        "Removed owosong! as there is a replacement variable.",
-                    ]
+            ],
+        defaultConfig: 
+            [
+                {
+                    type: "switch",
+                    id: "enableExperiments",
+                    name: "Enable Experiments",
+                    note: "Enable Discord Developer Experiments (Requires you to Switch Settings tabs to show up)",
+                    value: false
                 },
             ]
         };
@@ -51,10 +53,35 @@
                 DiscordModules,
                 Patcher
             } = Api;
-
             return class Textify extends Plugin {
                 constructor() {
                     super();
+                }
+
+                getSettingsPanel() {
+                    const panel = this.buildSettingsPanel();
+                    panel.addListener((id, checked) => {
+                        if (id == "enableExperiments") {
+                            if (checked) {
+                                try {
+                                    Object.defineProperty(BdApi.findModuleByProps(["isDeveloper"]), "isDeveloper", {
+                                        get: _=> 1, 
+                                        set: _=>_,
+                                        configurable: true
+                                    });
+                                } catch (e) {} // Stops it from throwing an error and failing to stop the plugin.
+                            } else {
+                                BdApi.findModuleByProps(["isDeveloper"]) && Object.defineProperty(BdApi.findModuleByProps(["isDeveloper"]),"isDeveloper",{
+                                    get:_=>0,
+                                    set:_=>{
+                                        throw new Error("Username is not in the sudoers file. This incident will be reported");
+                                    },
+                                    configurable: true
+                                });
+                            }
+                        }
+                    });
+                    return panel.getElement();
                 }
 
                 onStart() {
@@ -73,7 +100,7 @@
                                 Here we fuckin’ go
                                 Rawr
 
-                                x3 nuzzles, pounces on you, uwu you so warm (Ooh)
+                                ​x3 nuzzles, pounces on you, uwu you so warm (Ooh)
                                 Couldn't help but notice your bulge from across the floor
                                 Nuzzles your necky wecky-tilde murr-tilde, hehe
                                 Unzips your baggy ass pants, oof baby you so musky
