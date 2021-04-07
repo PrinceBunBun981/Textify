@@ -2,49 +2,63 @@
  * @name Textify
  * @authorId 264163473179672576
  * @authorLink https://github.com/PrinceBunBun981
+ * @website https://princebunbun981.com/projects/textify
  * @source https://github.com/PrinceBunBun981/Textify/blob/main/Textify.plugin.js
  */
  module.exports = (() => {
+    const version = "1.3.1";
     const config = {
-        info:
-            {
-                name: "Textify",
-                authors:
-                [
-                    {
-                        name: "PrinceBunBun981",
-                        discord_id: "644298972420374528",
-                        github_username: "PrinceBunBun981",
-                        twitter_username: "PrinceBunBun981"
-                    }
-                ],
-                version: "1.3.0",
-                description: "Use various commands to edit the text you send.",
-                github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textifyplugin.js",
-                github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
-            },
-        changelog:
-            [
-                {
-                    title: "1.3.0 Update",
-                    type: "added",
-                    items:
-                    [
-                        "Added option to Enable Discord Developer Experiments in Textify's Settings",
-                    ]
-                },
-            ],
-        defaultConfig: 
-            [
-                {
-                    type: "switch",
-                    id: "enableExperiments",
-                    name: "Enable Experiments",
-                    note: "Enable Discord Developer Experiments (Requires you to Switch Settings tabs to show up)",
-                    value: false
-                },
+        info: {
+            name: "Textify",
+            authors: [{
+                name: "PrinceBunBun981",
+                discord_id: "644298972420374528",
+                github_username: "PrinceBunBun981",
+                twitter_username: "PrinceBunBun981"
+            }],
+            version: version,
+            description: "Use various commands to edit the text you send.",
+            github: "https://github.com/PrinceBunBun981/Textify/blob/main/Textifyplugin.js",
+            github_raw: "https://raw.githubusercontent.com/PrinceBunBun981/Textify/main/Textify.plugin.js"
+        },
+        changelog: [{
+            title: `Bug Fixes`,
+            type: "fixed",
+            items: [
+                "Fixed Experiments not showing up on restart even though it's enabled.",
             ]
-        };
+        }, ],
+        defaultConfig: [{
+            type: "switch",
+            id: "enableExperiments",
+            name: "Enable Experiments",
+            note: "Enable Discord Developer Experiments (Requires you to Switch Settings tabs to show up)",
+            value: false
+        }, ]
+    };
+    const settings = BdApi.loadData(config.info.name, `settings`);
+
+    function enableExperiments() {
+        try {
+            Object.defineProperty(BdApi.findModuleByProps(["isDeveloper"]), "isDeveloper", {
+                get: _ => 1,
+                set: _ => _,
+                configurable: true
+            });
+        } catch (e) {
+            console.log(e)
+        } // Stops it from throwing an error and failing to stop the plugin.
+    }
+
+    function disableExperiments() {
+        BdApi.findModuleByProps(["isDeveloper"]) && Object.defineProperty(BdApi.findModuleByProps(["isDeveloper"]), "isDeveloper", {
+            get: _ => 0,
+            set: _ => {
+                throw new Error("Username is not in the sudoers file. This incident will be reported");
+            },
+            configurable: true
+        });
+    }
 
     return (([Plugin, Api]) => {
 
@@ -58,39 +72,19 @@
                     super();
                 }
 
-                getSettingsPanel() {
-                    const panel = this.buildSettingsPanel();
-                    panel.addListener((id, checked) => {
-                        if (id == "enableExperiments") {
-                            if (checked) {
-                                try {
-                                    Object.defineProperty(BdApi.findModuleByProps(["isDeveloper"]), "isDeveloper", {
-                                        get: _=> 1, 
-                                        set: _=>_,
-                                        configurable: true
-                                    });
-                                } catch (e) {} // Stops it from throwing an error and failing to stop the plugin.
-                            } else {
-                                BdApi.findModuleByProps(["isDeveloper"]) && Object.defineProperty(BdApi.findModuleByProps(["isDeveloper"]),"isDeveloper",{
-                                    get:_=>0,
-                                    set:_=>{
-                                        throw new Error("Username is not in the sudoers file. This incident will be reported");
-                                    },
-                                    configurable: true
-                                });
-                            }
-                        }
-                    });
-                    return panel.getElement();
-                }
-
                 onStart() {
+                    if (settings.enableExperiments) {
+                        enableExperiments();
+                    } else {
+                        disableExperiments();
+                    }
+
                     Patcher.after(DiscordModules.MessageActions, "sendMessage", (_, [, message]) => {
                         const content = message.content.toLowerCase();
-						
-						function getRandomItem(items) {
-							return items[Math.floor(Math.random()*items.length)];
-						}
+
+                        function getRandomItem(items) {
+                            return items[Math.floor(Math.random() * items.length)];
+                        }
                         // Replace random text components
                         switch (true) {
                             case content.includes("%owosong%"):
@@ -133,64 +127,64 @@
 
                         // Commands
                         switch (content.split("!")[0]) {
-							case "curse":
+                            case "curse":
                                 const curse = (/^curse\! /g).exec(content);
 
-								const a = ["a","ä","á","à","â","ã","å","ą"]
-								const b = ["b"]
-								const c = ["c","ç","ć","č"]
-								const d = ["d"]
-								const e = ["e","è","é","ê","ë","ē","ė","ę"]
-								const f = ["f"]
-								const h = ["h"]
-								const i = ["i","î","î","ï","í","ī","į","ì"]
-								const j = ["j"]
-								const k = ["k"]
-								const l = ["l","ł"]
-								const m = ["m"]
-								const n = ["n","ñ","ń"]
-								const o = ["o"]
-								const p = ["p"]
-								const q = ["q"]
-								const r = ["r"]
-								const s = ["s","ś","š"]
-								const t = ["t"]
-								const u = ["u","û","ü","ù","ú","ū"]
-								const v = ["v"]
-								const w = ["w"]
-								const x = ["x"]
-								const y = ["y","ÿ"]
-								const z = ["z","ž","ź","ż"]
+                                const a = ["a", "ä", "á", "à", "â", "ã", "å", "ą"]
+                                const b = ["b"]
+                                const c = ["c", "ç", "ć", "č"]
+                                const d = ["d"]
+                                const e = ["e", "è", "é", "ê", "ë", "ē", "ė", "ę"]
+                                const f = ["f"]
+                                const h = ["h"]
+                                const i = ["i", "î", "î", "ï", "í", "ī", "į", "ì"]
+                                const j = ["j"]
+                                const k = ["k"]
+                                const l = ["l", "ł"]
+                                const m = ["m"]
+                                const n = ["n", "ñ", "ń"]
+                                const o = ["o"]
+                                const p = ["p"]
+                                const q = ["q"]
+                                const r = ["r"]
+                                const s = ["s", "ś", "š"]
+                                const t = ["t"]
+                                const u = ["u", "û", "ü", "ù", "ú", "ū"]
+                                const v = ["v"]
+                                const w = ["w"]
+                                const x = ["x"]
+                                const y = ["y", "ÿ"]
+                                const z = ["z", "ž", "ź", "ż"]
 
                                 message.content = message.content.substr(curse[0].length, message.content.length)
                                     .replace(/[a]/g, getRandomItem(a))
-									.replace(/[b]/g, getRandomItem(b))
-									.replace(/[c]/g, getRandomItem(c))
-									.replace(/[d]/g, getRandomItem(d))
-									.replace(/[e]/g, getRandomItem(e))
-									.replace(/[f]/g, getRandomItem(f))
-									.replace(/[h]/g, getRandomItem(h))
-									.replace(/[i]/g, getRandomItem(i))
-									.replace(/[j]/g, getRandomItem(j))
-									.replace(/[k]/g, getRandomItem(k))
-									.replace(/[l]/g, getRandomItem(l))
-									.replace(/[m]/g, getRandomItem(m))
-									.replace(/[n]/g, getRandomItem(n))
-									.replace(/[o]/g, getRandomItem(o))
-									.replace(/[p]/g, getRandomItem(p))
-									.replace(/[q]/g, getRandomItem(q))
-									.replace(/[r]/g, getRandomItem(r))
-									.replace(/[s]/g, getRandomItem(s))
-									.replace(/[t]/g, getRandomItem(t))
-									.replace(/[u]/g, getRandomItem(u))
-									.replace(/[v]/g, getRandomItem(v))
-									.replace(/[w]/g, getRandomItem(w))
-									.replace(/[x]/g, getRandomItem(x))
-									.replace(/[y]/g, getRandomItem(y))
-									.replace(/[z]/g, getRandomItem(z))
+                                    .replace(/[b]/g, getRandomItem(b))
+                                    .replace(/[c]/g, getRandomItem(c))
+                                    .replace(/[d]/g, getRandomItem(d))
+                                    .replace(/[e]/g, getRandomItem(e))
+                                    .replace(/[f]/g, getRandomItem(f))
+                                    .replace(/[h]/g, getRandomItem(h))
+                                    .replace(/[i]/g, getRandomItem(i))
+                                    .replace(/[j]/g, getRandomItem(j))
+                                    .replace(/[k]/g, getRandomItem(k))
+                                    .replace(/[l]/g, getRandomItem(l))
+                                    .replace(/[m]/g, getRandomItem(m))
+                                    .replace(/[n]/g, getRandomItem(n))
+                                    .replace(/[o]/g, getRandomItem(o))
+                                    .replace(/[p]/g, getRandomItem(p))
+                                    .replace(/[q]/g, getRandomItem(q))
+                                    .replace(/[r]/g, getRandomItem(r))
+                                    .replace(/[s]/g, getRandomItem(s))
+                                    .replace(/[t]/g, getRandomItem(t))
+                                    .replace(/[u]/g, getRandomItem(u))
+                                    .replace(/[v]/g, getRandomItem(v))
+                                    .replace(/[w]/g, getRandomItem(w))
+                                    .replace(/[x]/g, getRandomItem(x))
+                                    .replace(/[y]/g, getRandomItem(y))
+                                    .replace(/[z]/g, getRandomItem(z))
 
                                 break;
-								
+
                             case "ra":
                                 const ra = (/^ra\! /g).exec(content);
 
@@ -263,6 +257,20 @@
                                 break;
                         }
                     });
+                }
+
+                getSettingsPanel() {
+                    const panel = this.buildSettingsPanel();
+                    panel.addListener((id, checked) => {
+                        if (id == "enableExperiments") {
+                            if (checked) {
+                                enableExperiments();
+                            } else {
+                                disableExperiments()
+                            }
+                        }
+                    });
+                    return panel.getElement();
                 }
 
                 onStop() {
